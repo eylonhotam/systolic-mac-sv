@@ -181,7 +181,7 @@ module pe_tb;
     end
  
     // ---- final result printout ----
-    if (errors == 0) $display("PASS");
+    if (errors == 0) $display("PASS_PE");
     else             $display("FAIL: %0d errors", errors);
     $finish;
   end
