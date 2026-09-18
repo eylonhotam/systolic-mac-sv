@@ -34,9 +34,9 @@ module col #(
     generate
         for (genvar i = 0; i < S; i++) begin : g_pe
             pe #(
-                .W_A    (W_A),
+              	.A_W    (W_A),
                 .W_W    (W_W),
-                .W_PSUM (W_PSUM)
+              	.P_W 	(W_PSUM)
             ) u_pe (
                 .clk        (clk),
                 .rst_n      (rst_n),
