@@ -8,25 +8,24 @@ module pe #(parameter A_W = 8, W_W = 8, P_W = 32) (
   input  logic signed [P_W-1:0]   psum_in,    // from PE above
   output logic signed [P_W-1:0]   psum_out    // to PE below
 );
-  
+
   logic signed [W_W-1:0] w_reg;               // weights register
-  logic signed [P_W-1:0] prod; 				        // product intermediate for multiplication
-  
-  assign prod = a_in * w_reg;
-  
+  logic signed [P_W-1:0] prod;                // product intermediate for multiplication
+
+  assign prod  = a_in * w_reg;
+  assign w_out = w_reg;                       // one shift stage per PE
+
   always_ff @(posedge clk) begin
-    if(!rst_n) begin 
-      a_out <= 0;
+    if (!rst_n) begin
+      a_out    <= 0;
       psum_out <= 0;
-      w_reg <= 0;
+      w_reg    <= 0;
     end else begin
-      a_out <= a_in; 
+      a_out    <= a_in;
       psum_out <= psum_in + prod;
-   
-      if(w_shift_en) begin 
-        w_out <= w_reg;
+
+      if (w_shift_en)
         w_reg <= w_in;
-      end
     end
   end
 endmodule
