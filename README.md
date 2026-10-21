@@ -2,7 +2,7 @@
 
 A weight-stationary systolic multiply-accumulate (MAC) array in SystemVerilog, the same dataflow used in matrix-multiply accelerators such as Google's TPU. It is built bottom-up (PE → column → array), with a self-checking testbench at each level before moving up.
 
-**Status:** `pe` and `col` are verified. `array` elaborates; its testbench is in progress. See [Roadmap](#roadmap).
+**Status:** `pe` and `col` and `array`are verified. See [Roadmap](#roadmap).
 
 ---
 
@@ -102,7 +102,7 @@ vsim -c col_tb -do "run -all; quit"    # expect PASS_COL
 - [x] PE + testbench
 - [x] Column + testbench
 - [x] Array top-level (elaborates)
-- [ ] Array testbench with a non-symmetric weight matrix (catches transposed-index bugs)
+- [x] Array testbench with a non-symmetric weight matrix (catches transposed-index bugs)
 - [ ] Input skew / output de-skew buffers
 - [ ] Valid/ready handshake
 - [ ] Requantization INT32 → INT8 (scale, round, saturate to [−128, 127])
